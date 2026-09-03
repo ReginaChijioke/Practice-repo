@@ -1,8 +1,10 @@
-total = 0
+# Defining a sample dictionary
+user_profile = {
+    "username": "coder123",
+    "email": "coder@example.com",
+    "status": "active"
+}
 
-def add_to_total(n):
-    global total
-    total = total + n
-
-add_to_total(5)
-print(add_to_total(5))
+# Iterating over key and value together
+for key, value in user_profile.items():
+    print(f"Key: {key} | Value: {value}")
