@@ -19,6 +19,4 @@ def get_response(matched_intent, response_map):
         return "I'm not sure i understand -- could you rephrase?"
 
 
-print(get_response("joke", RESPONSE_MAP))
-print(get_response("help", RESPONSE_MAP))
 
