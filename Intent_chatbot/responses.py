@@ -1,3 +1,6 @@
+import random
+
+
 RESPONSE_MAP = {
 
     "greetings" : ["Hello,how can i help you today?","Welcome,what are you working on today?","Hi,how're you feeling?"],
@@ -7,4 +10,15 @@ RESPONSE_MAP = {
     "goodbye" : ["bye to you too", "that's okay,i'll be here if you need me.", "take care,it was nice chatting with you."]
 }
 
-def get_response()
+def get_response(matched_intent, response_map):
+    if matched_intent in response_map:
+        responses = response_map.get(matched_intent) 
+        chosen_responses = random.choice(responses)
+        return(chosen_responses)
+    else:
+        return "I'm not sure i understand -- could you rephrase?"
+
+
+print(get_response("joke", RESPONSE_MAP))
+print(get_response("help", RESPONSE_MAP))
+

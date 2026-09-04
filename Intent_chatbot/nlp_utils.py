@@ -6,14 +6,12 @@ def clean_input(raw_text):
     punctuation = clean.maketrans("", "", string.punctuation)
     cleaned_text = clean.translate(punctuation)
     return cleaned_text
-print(clean_input("  kosy,, "))
 
 
 def match_intent(cleaned_text, intent_map):
-    for intent, phrase_list in intent_map.items():
+    for matched_intent, phrase_list in intent_map.items():
         for phrase in phrase_list:
             if phrase in cleaned_text:
-                return intent
+                return matched_intent
 
     return None
-print(match_intent("hey", INTENT_MAP))
