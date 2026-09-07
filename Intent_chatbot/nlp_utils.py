@@ -1,6 +1,7 @@
 import string 
 from intents import INTENT_MAP
 def clean_input(raw_text):
+    cleaned_text = None
     low = raw_text.lower()
     clean = low.strip()
     punctuation = clean.maketrans("", "", string.punctuation)

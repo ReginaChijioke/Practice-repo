@@ -5,6 +5,7 @@ def is_even(n):
     else:
         return False
 print(is_even(81))
+
 def make_profile(name, age=None, city="Unknown"):
     return f"{name} is {age} and she lives in {city}"
 print(make_profile("Ada", 30, "Lagos"))
