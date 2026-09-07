@@ -25,11 +25,6 @@ def get_response(matched_intent, response_map):
         return(chosen_responses)
     else:
         return "I'm not sure i understand -- could you rephrase?"
-    
-    
-
-
-        
 
 
 
