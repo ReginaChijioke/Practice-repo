@@ -11,7 +11,7 @@ while True:
         print("see ya")
         break
 
-    matched_intent = match_intent(clean_input, INTENT_MAP)
+    matched_intent = match_intent(cleaned, INTENT_MAP)
     bot_response = get_response(matched_intent, RESPONSE_MAP)
     print("Bot:", bot_response)
     exchange_count += 1
