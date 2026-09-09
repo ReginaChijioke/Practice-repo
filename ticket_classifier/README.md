@@ -1,4 +1,5 @@
 Ticky — Ticket Classifier
+
 WHAT IT DOES
 
 Ticky is a simple rule-based ticket classifier that categorizes user complaints into Billing, Technical, Account, or General and returns an appropriate response.
