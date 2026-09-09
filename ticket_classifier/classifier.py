@@ -1,5 +1,6 @@
 from categories import categories
 from categories import general_response
+
 def classify(cleaned_text, categories):
     words = cleaned_text.split()
     best_score = 0
@@ -15,8 +16,13 @@ def classify(cleaned_text, categories):
             best_category = category_name
             
     if best_category is None:
-        return general_response
+        return "general"
     else:
         return best_category
 
-print(classify("my computer has an error", categories))
+
+def respond(category, categories, general_response):
+    if category == "general":
+        return general_response
+    else:
+        return categories[category]["response"]
