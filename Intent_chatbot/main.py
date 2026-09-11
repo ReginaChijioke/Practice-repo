@@ -4,12 +4,14 @@ from intents import INTENT_MAP
 
 exit_phrases = {"exit", "bye", "quit"}
 exchange_count = 0
+user_name = None 
 while True:
     raw_input = input("You: ")
     cleaned = clean_input(raw_input)
     if cleaned in exit_phrases:
         print("see ya")
         break
+
 
     matched_intent = match_intent(cleaned, INTENT_MAP)
     bot_response = get_response(matched_intent, RESPONSE_MAP)

@@ -16,3 +16,18 @@ def match_intent(cleaned_text, intent_map):
                 return matched_intent
 
     return None
+
+def extract_name(cleaned_text):
+    name_intro = ["my name is", "im", "call me"]
+    for phrase in name_intro:
+        if phrase in cleaned_text:
+            name = cleaned_text.split(phrase)
+            cleaned_name = name[1]
+            real_name = cleaned_name.strip()
+            return real_name
+    return None
+result = "my name is kosy".split("my name is")
+print(result)
+
+
+
