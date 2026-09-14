@@ -36,8 +36,3 @@ def get_response(matched_intent, response_map, user_name):
     else:
         return "I'm not sure i understand -- could you rephrase?"
 
-print(get_response("greetings", RESPONSE_MAP, None))
-print(get_response("greetings", RESPONSE_MAP, "Kosy"))
-
-
-
