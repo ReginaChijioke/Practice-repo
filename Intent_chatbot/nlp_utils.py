@@ -18,7 +18,7 @@ def match_intent(cleaned_text, intent_map):
     return None
 
 def extract_name(cleaned_text):
-    name_intro = ["my name is", "im", "call me"]
+    name_intro = ["my name is", "im ", "call me"]
     for phrase in name_intro:
         if phrase in cleaned_text:
             name = cleaned_text.split(phrase)
@@ -26,8 +26,8 @@ def extract_name(cleaned_text):
             real_name = cleaned_name.strip()
             return real_name
     return None
-result = "my name is kosy".split("my name is")
-print(result)
+
+
 
 
 
