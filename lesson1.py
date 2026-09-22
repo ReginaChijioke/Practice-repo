@@ -1,10 +1,14 @@
-# Defining a sample dictionary
-user_profile = {
-    "username": "coder123",
-    "email": "coder@example.com",
-    "status": "active"
-}
+fruits = ["apple", "banana", "cherry"]
+fruits[1] = "blueberry"
+print(fruits)
 
-# Iterating over key and value together
-for key, value in user_profile.items():
-    print(f"Key: {key} | Value: {value}")
+
+list_a = [1, 2, 3]
+list_b = list_a
+list_a[0] = 999
+print(list_b)
+
+fruits = ["apple", "banana"]
+new_fruits = fruits.append("cherry")
+print(new_fruits)
+print(fruits)
