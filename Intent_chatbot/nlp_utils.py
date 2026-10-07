@@ -10,11 +10,15 @@ def clean_input(raw_text):
 
 
 def match_intent(cleaned_text, intent_map):
+    input_words = cleaned_text.split()
     for matched_intent, phrase_list in intent_map.items():
         for phrase in phrase_list:
-            if phrase in cleaned_text:
-                return matched_intent
-
+            phrase_split = phrase.split()
+            phrase_word_count = len(phrase_split)
+            for start in range(len(input_words) - phrase_word_count + 1):
+                window = input_words[start:start + phrase_word_count]
+                if window == phrase_split:
+                    return matched_intent
     return None
 
 def extract_name(cleaned_text):
