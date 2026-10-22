@@ -25,7 +25,7 @@ def create_ticket():
             }
             ticket_list.append(ticket)
             print("ticket have been created successfully")
-        return
+    return
 create_ticket()
 
 
@@ -44,5 +44,5 @@ load_tickets()
 
 def save_tickets(ticket):
     with open(TICKETS, "w") as written_file:
-        json.dump(ticket, written_file,)
-save_tickets(ticket)
+        json.dump(ticket_list, written_file,)
+save_tickets(ticket_list)
