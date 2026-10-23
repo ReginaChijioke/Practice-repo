@@ -1,48 +1,62 @@
 import json
 import os
-ticket_list = [
-    {
-        "id": None,
-        "title": None,
-        "description": None
-    }
-]
+TICKETS = "tickets.json"
+tickets = []
+
+
+def generate_ticket_id(tickets):
+    if not tickets:
+        next_number = 1
+    else:
+        ticket_numbers = []
+        for ticket in tickets:
+            ticket_id = ticket["id"]
+            numeric_part = int(ticket_id[1:])
+            ticket_numbers.append(numeric_part)
+
+        largest_number = ticket_numbers[0]
+        for number in ticket_numbers:
+            if number > largest_number:
+                largest_number = number
+        next_number = largest_number + 1
+    return f"T{next_number:03d}"
+        
+
+def save_tickets(tickets):
+    with open(TICKETS, "w") as written_file:
+        json.dump(tickets, written_file, indent=4)
 
 def create_ticket():
-    ticket_id = input("Enter ticket id: ").strip()
     title = input("Enter title: ").strip()
     description = input("Enter ticket description: ").strip()
-    for ticket in ticket_list:
-        if not ticket_id or not title or not description:
-            print("id, title and description cannot be empty. ")
-        elif ticket_id == ticket["id"]:
-            print("Cannot create ticket with duplicate id")
-        else:
-            ticket = {
-                "id": ticket_id,
-                "title": title,
-                "description": description
-            }
-            ticket_list.append(ticket)
-            print("ticket have been created successfully")
-    return
-create_ticket()
+    if not title or not description:
+        print("title and description cannot be empty. ")
+        return 
+    next_id = generate_ticket_id(tickets)
+    ticket = {
+        "id": next_id,
+        "title": title,
+        "description": description
+    }
+    tickets.append(ticket)
+    save_tickets(tickets)
+    print("ticket created successfully")
 
 
-TICKETS = "tickets.json"
+
+
 def load_tickets():
     if os.path.exists(TICKETS):
         try:
             with open(TICKETS, "r") as read_file:
-                ticket = json.load(read_file)
-                return ticket
+                tickets = json.load(read_file)
+                return tickets
         except json.JSONDecodeError:
             raise
     else:
         return []
-load_tickets()
-
-def save_tickets(ticket):
-    with open(TICKETS, "w") as written_file:
-        json.dump(ticket_list, written_file,)
-save_tickets(ticket_list)
+try:
+    tickets = load_tickets()
+    create_ticket()
+except json.JSONDecodeError:
+    print("Invalid json.")
