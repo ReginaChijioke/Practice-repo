@@ -2,21 +2,6 @@
     {
         "id": "T001",
         "title": "network",
-        "description": "the network have been faulty"
-    },
-    {
-        "id": "T002",
-        "title": "broken mouse",
-        "description": "the mouse is not working"
-    },
-    {
-        "id": "T003",
-        "title": "keyboard twitching",
-        "description": "the keyboerd has stopped fuunctioning"
-    },
-    {
-        "id": "T004",
-        "title": "network",
-        "description": "faulty"
+        "description": "it's been faulty since morning"
     }
 ]
