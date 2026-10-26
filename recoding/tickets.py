@@ -1,5 +1,10 @@
 import json
 import os
+from dotenv import load_dotenv
+from google import genai
+
+load_dotenv()
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 TICKETS = "tickets.json"
 tickets = []
 
@@ -41,6 +46,48 @@ def create_ticket():
     tickets.append(ticket)
     save_tickets(tickets)
     print("ticket created successfully")
+    return next_id
+
+
+
+def analyze_ticket(ticket_id):
+    saved_tickets = load_tickets()
+
+    matching_ticket = None
+
+    for ticket in saved_tickets:
+        if ticket["id"] == ticket_id:
+            matching_ticket = ticket
+            break
+
+    if matching_ticket is None:
+        return False, "Ticket not found."
+
+    description = matching_ticket["description"]
+
+    if not os.getenv("GEMINI_API_KEY"):
+        return False, "Gemini API key is missing."
+
+    try:
+        response = client.models.generate_content(
+            model="gemini-3.8-flash",
+            contents=(
+                "You are a technical support assistant. "
+                "Analyze this support ticket. Suggest likely causes "
+                "and practical troubleshooting steps. "
+                "Be clear when you are uncertain.\n\n"
+                f"Ticket description: {description}"
+            )
+        )
+
+        if not response.text:
+            return False, "Gemini returned no suggestions."
+
+        return True, response.text
+
+    except Exception as error:
+        print(f"AI analysis failed: {error}")
+        return False, "Could not analyze the ticket. The ticket was still saved."
 
 
 
@@ -55,8 +102,19 @@ def load_tickets():
             raise
     else:
         return []
+
+
 try:
     tickets = load_tickets()
-    create_ticket()
+    ticket_id = create_ticket()
+    if ticket_id:
+        success, result = analyze_ticket(ticket_id)
+
+        if success:
+            print("\nAI Suggestions:")
+            print(result)
+        else:
+            print(result)
 except json.JSONDecodeError:
     print("Invalid json.")
+
