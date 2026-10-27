@@ -123,5 +123,35 @@
         "id": "T025",
         "title": "Network",
         "description": "errro"
+    },
+    {
+        "id": "T026",
+        "title": "network",
+        "description": "it is faulty"
+    },
+    {
+        "id": "T027",
+        "title": "network",
+        "description": "the network is faulty"
+    },
+    {
+        "id": "T028",
+        "title": "hardware",
+        "description": "my keyboard is broken"
+    },
+    {
+        "id": "T029",
+        "title": "hardware",
+        "description": "broken shift key on my keyboard"
+    },
+    {
+        "id": "T030",
+        "title": "network",
+        "description": "is faulty"
+    },
+    {
+        "id": "T031",
+        "title": "network",
+        "description": "is extremely bad"
     }
 ]
